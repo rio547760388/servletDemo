@@ -45,32 +45,23 @@
             <version>3.0.4</version>
         </dependency>
 
-        <!-- mybatis generator -->
-        <dependency>
-            <groupId>org.mybatis.generator</groupId>
-            <artifactId>mybatis-generator-core</artifactId>
-            <version>1.3.7</version>
-        </dependency>
-
-        <!-- mybatis 合并 Java 代码 -->
-        <dependency>
-            <groupId>com.github.javaparser</groupId>
-            <artifactId>javaparser-core</artifactId>
-            <version>3.6.23</version>
-        </dependency>
-
-        <!-- mybatis 合并 Java 代码 -->
-        <dependency>
-            <groupId>com.github.javaparser</groupId>
-            <artifactId>javaparser-symbol-solver-core</artifactId>
-            <version>3.6.23</version>
-        </dependency>
-
         <!-- 日志 -->
         <dependency>
             <groupId>org.slf4j</groupId>
             <artifactId>slf4j-api</artifactId>
             <version>${slf4j.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>ch.qos.logback</groupId>
+            <artifactId>logback-core</artifactId>
+            <version>1.2.3</version>
+        </dependency>
+
+        <dependency>
+            <groupId>ch.qos.logback</groupId>
+            <artifactId>logback-classic</artifactId>
+            <version>1.2.3</version>
         </dependency>
 
         <!-- Json工具类 -->
@@ -150,10 +141,22 @@
             <version>5.1.5.RELEASE</version>
         </dependency>
 
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-beans</artifactId>
+            <version>5.1.5.RELEASE</version>
+        </dependency>
+
         <!-- spring -->
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-tx</artifactId>
+            <version>5.1.5.RELEASE</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-jdbc</artifactId>
             <version>5.1.5.RELEASE</version>
         </dependency>
 
@@ -212,18 +215,8 @@
                     <overwrite>true</overwrite>
                 </configuration>
                 <dependencies>
-                    <!-- mybatis 合并 Java 代码 -->
-                    <dependency>
-                        <groupId>com.github.javaparser</groupId>
-                        <artifactId>javaparser-core</artifactId>
-                        <version>3.6.23</version>
-                    </dependency>
-                    <!-- mybatis 插件 -->
-                    <dependency>
-                        <groupId>com.ronhan</groupId>
-                        <artifactId>mybatis-plugin</artifactId>
-                        <version>${mybatis.plugin.version}</version>
-                    </dependency>
+
+
                 </dependencies>
             </plugin>
         </plugins>

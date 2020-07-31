@@ -3,7 +3,7 @@ package org.rio.mapper;
 import java.util.List;
 import org.apache.ibatis.annotations.Param;
 import org.rio.bean.Users;
-import org.rio.example.UsersExample;
+import org.rio.bean.UsersExample;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 
 /**

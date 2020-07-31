@@ -1,12 +1,9 @@
 package org.rio.servlet;
 
-import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
-import org.apache.ibatis.session.Configuration;
-import org.apache.ibatis.session.SqlSession;
-import org.apache.ibatis.session.SqlSessionFactory;
+import lombok.extern.slf4j.Slf4j;
 import org.rio.bean.Users;
-import org.rio.example.UsersExample;
-import org.rio.mapper.UsersMapper;
+import org.rio.service.UsersService;
+import org.springframework.context.ApplicationContext;
 
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
@@ -15,8 +12,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.util.Enumeration;
-import java.util.List;
 
 /**
  * @author Mloong
@@ -24,43 +19,25 @@ import java.util.List;
  * <p></p>
  * @since 2020/7/29
  **/
+@Slf4j
 @WebServlet(value = "/hello")
 public class IndexServlet extends HttpServlet {
 
-    private SqlSessionFactory sqlSessionFactory;
-    private Configuration configuration;
+    private UsersService usersService;
 
     @Override
     public void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        Users users = usersService.findById(1L);
 
-        try (SqlSession session = sqlSessionFactory.openSession()) {
-            UsersExample ue = new UsersExample();
-            List<Users> usersList = session.selectList("org.rio.mapper.UsersMapper.selectByExample", ue);
-            Users u = usersList.stream().findFirst().get();
-            resp.getWriter().println("hello servlet 4.0 " + u.toString());
+        log.info("查询：{}", users);
 
-            UsersMapper usersMapper = configuration.getMapper(UsersMapper.class, session);
-            UsersExample uex = new UsersExample();
-            uex.createCriteria().andIdEqualTo(1L);
-            Users users = usersMapper.selectByPrimaryKey(1L);
-
-            log("查询：" + users.toString());
-            Enumeration<String> enumeration = this.getServletContext().getAttributeNames();
-            String s = "";
-            while (enumeration.hasMoreElements()) {
-                s += enumeration.nextElement() + "|";
-            }
-            System.out.println(s);
-            log("上下文中：" + s);
-
-        }
-
+        resp.getWriter().println(users);
     }
 
     @Override
     public void init(ServletConfig config) throws ServletException {
         super.init(config);
-        sqlSessionFactory = (SqlSessionFactory) config.getServletContext().getAttribute("sqlSessionFactory");
-        configuration = (Configuration) this.getServletContext().getAttribute("mybatisConfiguration");
+        ApplicationContext context = (ApplicationContext) config.getServletContext().getAttribute("applicationContext");
+        usersService = context.getBean(UsersService.class);
     }
 }
