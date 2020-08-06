@@ -28,8 +28,6 @@ public class UsersServiceImpl implements UsersService {
 
     @Override
     public Users findById(Long id) {
-        menusMapper.selectList(new QueryWrapper<Menus>());
-
         return usersMapper.selectByPrimaryKey(id);
     }
 }

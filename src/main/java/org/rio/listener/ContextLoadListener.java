@@ -17,7 +17,7 @@ import java.io.InputStream;
  * <p></p>
  * @since 2020/7/29
  **/
-@WebListener("contextLoadListener")
+/*@WebListener("contextLoadListener")
 public class ContextLoadListener implements ServletContextListener {
 
     @Override
@@ -25,4 +25,4 @@ public class ContextLoadListener implements ServletContextListener {
         ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext("classpath:/application.xml");
         sce.getServletContext().setAttribute("applicationContext", context);
     }
-}
+}*/
