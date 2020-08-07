@@ -12,7 +12,7 @@
 
     <properties>
         <mybatis.plugin.version>1.2.6</mybatis.plugin.version>
-        <fasterxml.jackson.version>2.9.10</fasterxml.jackson.version>
+        <fasterxml.jackson.version>2.11.2</fasterxml.jackson.version>
         <slf4j.version>1.7.25</slf4j.version>
     </properties>
 
